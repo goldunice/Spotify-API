@@ -1,0 +1,66 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="value" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E111" />
+          <option value="E741" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="main11H.chiqar_tub_son" />
+          <option value="dict.get" />
+          <option value="main.Example.__add__" />
+          <option value="Example" />
+          <option value="asosiy.models.Muallif.objects" />
+          <option value="asosiy.models.Record.*" />
+          <option value="asosiy.models.Kitob.objects" />
+          <option value="taskApp.models.Fan.*" />
+          <option value="taskApp.models.Yonalish.*" />
+          <option value="taskApp.models.Ustoz.objects" />
+          <option value="asosiy.models.Talaba.objects" />
+          <option value="asosiy.models.Kutubxonachi.objects" />
+          <option value="asosiy.views.YourForm" />
+          <option value="mainApp.models.Student.objects" />
+          <option value="mainApp.models.Record.*" />
+          <option value="mainApp.models.Book.*" />
+          <option value="mainApp.models.Author.*" />
+          <option value="mainApp.models.Librarian.objects" />
+          <option value="mainApp.views.times" />
+          <option value="mainApp.views.*" />
+          <option value="mainApp.models.Major.*" />
+          <option value="mainApp.models.Subject.objects" />
+          <option value="mainApp.models.Teacher.objects" />
+          <option value="mainApp.models.Togri.objects" />
+          <option value="mainApp.models.Notogri.objects" />
+          <option value="mainApp.models.Plan.*" />
+          <option value="main.num" />
+          <option value="int.*" />
+          <option value="mainApp.models.Transfer.*" />
+          <option value="tasks.models.Task.objects" />
+          <option value="mainApp.models.Player.objects" />
+          <option value="main.*" />
+          <option value="django.db.models.fields.related.ForeignKey.save" />
+          <option value="asosiy.models.Mahsulot.objects" />
+          <option value="asosiyApp.models.Mahsulot.objects" />
+          <option value="asosiyApp.models.Mijoz.objects" />
+          <option value="statsApp.models.Stats.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
