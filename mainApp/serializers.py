@@ -16,14 +16,14 @@ class QoshiqSerializer(serializers.ModelSerializer):
             raise ValidationError("Faqat 7 daqiqadan kam bo'lgan mp3 fayllarni yuklang!")
 
     def validate_fayl(self, qiymat):
-        print(qiymat)
-        if qiymat.url.endswith('.mp3'):
+        qiymat = str(qiymat)
+        if qiymat.endswith('.mp3'):
             return qiymat
         else:
             raise ValidationError("Faqat [.mp3] formatidagi fayl bo'lishi kerak")
 
     def to_representation(self, instance):
-        qoshiq = super(QoshiqSerializer, self).to_representation(instance)
+        qoshiq = super(QoshiqSerializer, self).to_representation(instance)  # qoshiq bu - dict
         qoshiq.update({'albom': instance.albom.nom})
         return qoshiq
 

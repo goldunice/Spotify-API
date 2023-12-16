@@ -4,6 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from .serializers import *
 from .models import *
 from rest_framework.decorators import action
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 
 class QoshiqAPI(APIView):
@@ -63,6 +64,9 @@ class QoshiqchiAPI(APIView):
 class AlbomlarModelViewSet(ModelViewSet):
     queryset = Albom.objects.all()
     serializer_class = AlbomSerializer
+    filter_backends = [OrderingFilter, SearchFilter]
+    ordering_fields = ['sana']
+    search_fields = ['nom']
 
     @action(detail=True)
     def qoshiqlari(self, request, pk):
@@ -75,6 +79,9 @@ class AlbomlarModelViewSet(ModelViewSet):
 class QoshiqchilarModelViewSet(ModelViewSet):
     queryset = Qoshiqchi.objects.all()
     serializer_class = QoshiqchiSerializer
+    filter_backends = [OrderingFilter, SearchFilter]
+    ordering_fields = ['tugilgan_yil']
+    search_fields = ['ism', 'davlat']
 
     @action(detail=True)
     def albomlari(self, request, pk):
@@ -87,3 +94,6 @@ class QoshiqchilarModelViewSet(ModelViewSet):
 class QoshiqModelViewSet(ModelViewSet):
     queryset = Qoshiq.objects.all()
     serializer_class = QoshiqSerializer
+    filter_backends = [OrderingFilter, SearchFilter]
+    ordering_fields = ['davomiylik']
+    search_fields = ['nom', 'janr']
