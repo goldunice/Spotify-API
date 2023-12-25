@@ -5,6 +5,10 @@ from .serializers import *
 from .models import *
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.pagination import PageNumberPagination
+from django.contrib.postgres.search import TrigramSimilarity
+
+from drf_yasg.utils import swagger_auto_schema
 
 
 class QoshiqAPI(APIView):
@@ -13,6 +17,7 @@ class QoshiqAPI(APIView):
         serializer = QoshiqSerializer(qoshiqlar, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=QoshiqSerializer)
     def post(self, request):
         qoshiq = request.data
         serializer = QoshiqSerializer(data=qoshiq)
@@ -29,6 +34,7 @@ class QoshiqchilarAPI(APIView):
         serializer = QoshiqchiSerializer(qoshiqchi, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=QoshiqchiSerializer)
     def post(self, request):
         qoshiqchi = request.data
         serializer = QoshiqchiSerializer(data=qoshiqchi)
@@ -45,6 +51,7 @@ class QoshiqchiAPI(APIView):
         serializer = QoshiqchiSerializer(qoshiqchi)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=QoshiqchiSerializer)
     def put(self, request, pk):
         qoshiqchi = Qoshiqchi.objects.get(id=pk)
         serializer = QoshiqchiSerializer(qoshiqchi, data=request.data)
@@ -53,7 +60,7 @@ class QoshiqchiAPI(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
-
+    @swagger_auto_schema(request_body=QoshiqchiSerializer)
     def delete(self, request, pk):
         qoshiqchi = Qoshiqchi.objects.get(id=pk)
         serializer = QoshiqchiSerializer(qoshiqchi)
@@ -97,3 +104,14 @@ class QoshiqModelViewSet(ModelViewSet):
     filter_backends = [OrderingFilter, SearchFilter]
     ordering_fields = ['davomiylik']
     search_fields = ['nom', 'janr']
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = 2
+
+    def get_queryset(self):
+        search = self.request.query_params.get('search')
+        qoshiqlar = self.queryset
+        if search:
+            qoshiqlar = Qoshiq.objects.annotate(
+                similirity=TrigramSimilarity('nom', search)
+            ).filter(similirity__gt=0.3).order_by('-similirity')
+        return qoshiqlar
